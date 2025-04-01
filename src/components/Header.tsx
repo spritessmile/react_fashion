@@ -1,11 +1,9 @@
-import Navigation from '@/components/Navigation'
-
+import Navbar from '@/components/Navbar'
+import Card from '@/components/Card'
 const Header = () => {
   return (
-    <header className="flex">
-      <h1 className="text-xl font-semibold">Share Terrace</h1>
-
-      <Navigation />
+    <header>
+      <Navbar />
     </header>
   )
 }
