@@ -1,8 +1,13 @@
 import Image from 'next/image'
+import HeroSection from '@/components/HeroSection'
+import PersonnelSection from '@/components/PersonnelSection'
 
 const Home = () => (
   <main>
-    <h1>main</h1>
+    {/* main section */}
+    <HeroSection />
+
+    <PersonnelSection />
   </main>
 )
 
