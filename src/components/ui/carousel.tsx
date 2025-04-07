@@ -1,11 +1,12 @@
 'use client'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
+import { StaticImageData } from 'next/image'
 import { useState, useRef, useId, useEffect } from 'react'
 
 interface SlideData {
   title: string
   button: string
-  src: string
+  src: StaticImageData
 }
 
 interface SlideProps {
