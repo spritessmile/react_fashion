@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'motion/react'
-import HeroImg from '@/assets/hero.jpg'
+import HeroImg from '@/assets/images/hero.jpg'
 
 const HeroSection = () => (
   <div className="relative mx-auto mb-10 flex max-w-7xl flex-col items-center justify-center">
