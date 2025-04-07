@@ -1,46 +1,32 @@
 'use client'
 
-import React, { useState } from 'react'
-import { HoveredLink, Menu, MenuItem } from '@/components/ui/navbar-menu'
-import Card from '@/components/Card'
+import React from 'react'
+import BlurredCard from '@/components/BlurredCard'
 import ThemeToggle from '@/components/theme/ThemeToggle'
 import { cn } from '@/lib/utils'
 
 const Navbar = ({ className }: { className?: string }) => {
-  const [active, setActive] = useState<string | null>(null)
-
   return (
     <nav
       className={cn(
-        'fixed inset-x-0 top-10 z-50 mx-auto flex max-w-2xl items-center justify-around',
+        'fixed inset-x-0 top-10 z-50 mx-auto w-full max-w-2xl',
         className,
       )}
     >
-      <Card>
-        <h1 className="mr-5 text-xl font-semibold">Share Terrace</h1>
+      <BlurredCard>
+        <h1 className="mr-48 text-xl font-semibold">Share Terrace</h1>
+        <ul className="mr-2 flex items-center justify-around space-x-2">
+          <li>lorem</li>
+          <li>lorem</li>
+          <li>lorem</li>
+        </ul>
 
-        <Menu setActive={setActive}>
-          <MenuItem
-            setActive={setActive}
-            active={active}
-            item="Pricing"
-          ></MenuItem>
-
-          <MenuItem setActive={setActive} active={active} item="Contact us">
-            <div className="flex flex-col space-y-4 text-sm">
-              <HoveredLink href="/hobby">Hobby</HoveredLink>
-              <HoveredLink href="/individual">Individual</HoveredLink>
-              <HoveredLink href="/team">Team</HoveredLink>
-              <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-            </div>
-          </MenuItem>
-
-          <ThemeToggle />
-          {/* <Button variant={'outline'} onClick={}>
+        <ThemeToggle />
+        <ThemeToggle />
+        {/* <Button variant={'outline'} onClick={}>
           lang
         </Button> */}
-        </Menu>
-      </Card>
+      </BlurredCard>
     </nav>
   )
 }
