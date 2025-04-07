@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import CostsChart from '@/components/CostsChart'
+// import { GlareCard } from '@/components/ui/glare-card'
 import React, { useEffect, useId, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useOutsideClick } from '@/hooks/use-outside-click'
@@ -69,20 +70,29 @@ const RoomList = () => {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="flex h-full w-full max-w-3xl flex-col overflow-hidden bg-white sm:rounded-3xl md:h-fit dark:bg-neutral-900"
+              className="flex h-full w-full max-w-3xl flex-col overflow-hidden bg-white p-5 sm:rounded-3xl md:h-fit dark:bg-neutral-900"
             >
               <div>
                 <div className="flex items-start justify-between p-4">
-                  <div className="">
+                  <div>
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
-                      className="font-bold text-neutral-700 dark:text-neutral-200"
+                      className="flex items-center justify-start font-bold text-neutral-700 dark:text-neutral-200"
                     >
-                      {active.title}
+                      {active.title} ·{' '}
+                      {active.status ? (
+                        <div className="ml-2 w-fit rounded-xl border bg-red-600 p-2 shadow dark:border-2">
+                          現在満室
+                        </div>
+                      ) : (
+                        <div className="ml-2 w-fit rounded-xl border bg-green-600 p-2 shadow dark:border-2">
+                          現在空室
+                        </div>
+                      )}
                     </motion.h3>
                     <motion.p
                       layoutId={`description-${active.description}-${id}`}
-                      className="text-neutral-600 dark:text-neutral-400"
+                      className="mt-2 text-neutral-600 dark:text-neutral-400"
                     >
                       {active.description}
                     </motion.p>
@@ -94,7 +104,7 @@ const RoomList = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex flex-col items-start gap-4 overflow-auto pb-10 text-xs text-neutral-600 [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] md:h-fit md:text-sm lg:text-base dark:text-neutral-400"
+                    className="flex flex-col items-start overflow-auto text-xs text-neutral-600 [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] md:h-fit md:text-sm lg:text-base dark:text-neutral-400"
                   >
                     {typeof active.content === 'function'
                       ? active.content()
@@ -126,9 +136,9 @@ const RoomList = () => {
                 />
               </motion.div> */}
               {card.status ? (
-                <div className="size-8 rounded-lg bg-green-400"></div>
-              ) : (
                 <div className="size-8 rounded-lg bg-red-600"></div>
+              ) : (
+                <div className="size-8 rounded-lg bg-green-400"></div>
               )}
               <div className="">
                 <motion.h3
@@ -191,6 +201,8 @@ export const CloseIcon = () => {
   )
 }
 
+// we set the cards here, the status is for the room condition, which means that the room is full when status is true, and the room is empty when status is false
+// the status variable is more prefer to rename to `isFull` or `canApplyThisRoom`
 const cards = [
   {
     status: true,
@@ -201,30 +213,49 @@ const cards = [
       return (
         // <CostsChart />
 
-        <p className="flex flex-col space-y-2 text-sm">
-          <strong>共益費・管理費※固定分</strong> ￥5,000
-          <br />
-          <strong>共益費・管理費※変動分</strong> 2名入居時の共益費は￥9000
-          <strong>設備等：</strong>
-          床材は洋室（合板フローリング）。窓の向きは東、南。押入れ（0.5畳）付き。無線LANあり。備品：エアコン、机、椅子。
-          <br />
-          入居条件：男性、女性、外国人対応OK
-          <br />
-          敷金・保証金： ￥0 礼金： ￥35,000
-          <br />
-          仲介手数料：（税抜）￥0
-          <br />
-          鍵交換費用：（税抜）￥0
-          <br />
-          保険：三井住友海上火災保険への加入任意（￥1300／月）
-          <br />
-          賃貸借契約の種類：建物賃貸借契約
-          <br />
-          賃貸借契約の期間：3ヵ月～
-          <br />
-          家賃保証会社：その方の状況次第。家賃保証会社加入の場合（賃料共益費込みの50%）。
-          最大入居人数：2名、入居時の賃料は￥60,000
-        </p>
+        <div className="text-start text-lg md:text-sm">
+          <ul className="mb-8 flex flex-col space-y-2">
+            <li>
+              <strong>共益費・管理費※固定分</strong> ￥5,000
+            </li>
+            <li>
+              <strong>共益費・管理費※変動分</strong> 2名入居時の共益費は￥9000
+            </li>
+            <li>
+              <strong>設備等</strong>
+              床材は洋室（合板フローリング）。窓の向きは東、南。押入れ（0.5畳）付き。無線LANあり。備品：エアコン、机、椅子。
+            </li>
+            <li>
+              <strong>入居条件</strong> 男性、女性、外国人対応OK
+            </li>
+
+            <li>
+              <strong>敷金・保証金</strong> ￥0
+            </li>
+
+            <li>
+              <strong>仲介手数料・ 鍵交換費用</strong> ￥0
+            </li>
+            <li>
+              <strong>礼金</strong> ￥35,000
+            </li>
+            <li>
+              <strong>保険</strong>{' '}
+              三井住友海上火災保険への加入任意（￥1300／月）
+            </li>
+          </ul>
+
+          <div className="w-full rounded-xl border p-5 shadow dark:border-2">
+            <strong>賃貸借契約の種類</strong> 建物賃貸借契約
+            <br />
+            <strong>賃貸借契約の期間</strong> 3ヵ月から
+            <br />
+            <strong>家賃保証会社</strong>{' '}
+            その方の状況次第。家賃保証会社加入の場合（賃料共益費込みの50%）
+            <br />
+            <strong>最大入居人数</strong> 2名
+          </div>
+        </div>
       )
     },
   },
@@ -235,9 +266,55 @@ const cards = [
     ctaText: '詳細',
     content: () => {
       return (
-        <p>
-          トイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレ
-        </p>
+        <div className="text-start text-lg md:text-sm">
+          <ul className="mb-8 flex flex-col space-y-2">
+            <li>
+              <strong>広さ</strong> 10.9 ㎡ 6.7 畳
+            </li>
+            <li>
+              <strong>賃料</strong> ￥30,000
+            </li>
+            <li>
+              <strong>共益費・管理費※固定分</strong> ￥5,000
+            </li>
+            <li>
+              <strong>共益費・管理費※変動分</strong> 2名入居時の共益費は￥9000
+            </li>
+            <li>
+              <strong>設備等</strong>
+              1F。床材は洋室（合板フローリング）。陽当たりA。窓の向きは北。押入れ（1.5畳）、地袋（1畳）付き。無線LANあり。備品：エアコン、机、椅子。
+            </li>
+            <li>
+              <strong>入居条件</strong> 男性、女性、外国人対応OK
+            </li>
+            <li>
+              <strong>敷金・保証金</strong> ￥0
+            </li>
+            <li>
+              <strong>礼金</strong> ￥35,000
+            </li>
+            <li>
+              <strong>仲介手数料・鍵交換費用</strong> ￥0
+            </li>
+            <li>
+              <strong>保険</strong>
+              三井住友海上火災保険への加入任意（￥1300／月）。
+            </li>
+          </ul>
+
+          <div className="w-full rounded-xl border p-5 shadow dark:border-2">
+            <strong>賃貸借契約の種類</strong> 建物賃貸借契約
+            <br />
+            <strong>賃貸借契約の期間</strong> 3ヵ月～
+            <br />
+            <strong>家賃保証会社</strong>
+            その方の状況次第。家賃保証会社加入の場合（賃料共益費込みの50%）。
+            <br />
+            <strong>最終更新日</strong> 2025-04-03
+            <br />
+            <strong>最大入居人数</strong> 2名
+          </div>
+        </div>
       )
     },
   },
@@ -249,9 +326,55 @@ const cards = [
     ctaText: '詳細',
     content: () => {
       return (
-        <p>
-          トイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレ
-        </p>
+        <div className="text-start text-lg md:text-sm">
+          <ul className="mb-8 flex flex-col space-y-2">
+            <li>
+              <strong>広さ</strong> 18.2 ㎡ 11.2 畳
+            </li>
+            <li>
+              <strong>賃料</strong> ￥30,000
+            </li>
+            <li>
+              <strong>共益費・管理費※固定分</strong> ￥5,000
+            </li>
+            <li>
+              <strong>共益費・管理費※変動分</strong> 2名入居時の共益費は￥9000
+            </li>
+            <li>
+              <strong>設備等</strong>
+              1F。床材は洋室（合板フローリング）。陽当たりA。窓の向きは北、西。押入れ（1.25畳）、地袋（0.3畳）付き。無線LANあり。備品：エアコン、机、椅子。
+            </li>
+            <li>
+              <strong>入居条件</strong> 男性、女性、外国人対応OK
+            </li>
+            <li>
+              <strong>敷金・保証金</strong> ￥0
+            </li>
+            <li>
+              <strong>礼金</strong> ￥35,000
+            </li>
+            <li>
+              <strong>仲介手数料・鍵交換費用</strong> ￥0
+            </li>
+            <li>
+              <strong>保険</strong>
+              三井住友海上火災保険への加入任意（￥1300／月）。
+            </li>
+          </ul>
+
+          <div className="w-full rounded-xl border p-5 shadow dark:border-2">
+            <strong>賃貸借契約の種類</strong> 建物賃貸借契約
+            <br />
+            <strong>賃貸借契約の期間</strong> 3ヵ月～
+            <br />
+            <strong>家賃保証会社</strong>
+            その方の状況次第。家賃保証会社加入の場合（賃料共益費込みの50%）。
+            <br />
+            <strong>最終更新日</strong> 2025-04-03
+            <br />
+            <strong>最大入居人数</strong> 2名
+          </div>
+        </div>
       )
     },
   },
@@ -262,9 +385,55 @@ const cards = [
     ctaText: '詳細',
     content: () => {
       return (
-        <p>
-          トイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレ
-        </p>
+        <div className="text-start text-lg md:text-sm">
+          <ul className="mb-8 flex flex-col space-y-2">
+            <li>
+              <strong>広さ</strong> 10.9 ㎡ 6.7 畳
+            </li>
+            <li>
+              <strong>賃料</strong> ￥32,000
+            </li>
+            <li>
+              <strong>共益費・管理費※固定分</strong> ￥5,000
+            </li>
+            <li>
+              <strong>共益費・管理費※変動分</strong> 2名入居時の共益費は￥9000
+            </li>
+            <li>
+              <strong>設備等</strong>
+              2F。床材は洋室（CFフローリング）。陽当たりA。窓の向きは北、東。2階者限定のルーフテラスあり。無線LANあり。備品：エアコン、机、椅子。
+            </li>
+            <li>
+              <strong>入居条件</strong> 男性、女性、外国人対応OK
+            </li>
+            <li>
+              <strong>敷金・保証金</strong> ￥0
+            </li>
+            <li>
+              <strong>礼金</strong> ￥37,000
+            </li>
+            <li>
+              <strong>仲介手数料・鍵交換費用</strong> ￥0
+            </li>
+            <li>
+              <strong>保険</strong>
+              三井住友海上火災保険への加入任意（￥1300／月）。
+            </li>
+          </ul>
+
+          <div className="w-full rounded-xl border p-5 shadow dark:border-2">
+            <strong>賃貸借契約の種類</strong> 建物賃貸借契約
+            <br />
+            <strong>賃貸借契約の期間</strong> 3ヵ月～
+            <br />
+            <strong>家賃保証会社</strong>
+            その方の状況次第。家賃保証会社加入の場合（賃料共益費込みの50%）。
+            <br />
+            <strong>最終更新日</strong> 2025-04-03
+            <br />
+            <strong>最大入居人数</strong> 2名
+          </div>
+        </div>
       )
     },
   },
@@ -275,9 +444,55 @@ const cards = [
     ctaText: '詳細',
     content: () => {
       return (
-        <p>
-          トイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレトイレ
-        </p>
+        <div className="text-start text-lg md:text-sm">
+          <ul className="mb-8 flex flex-col space-y-2">
+            <li>
+              <strong>広さ</strong> 14.6 ㎡ 9 畳
+            </li>
+            <li>
+              <strong>賃料</strong> ￥32,000
+            </li>
+            <li>
+              <strong>共益費・管理費※固定分</strong> ￥5,000
+            </li>
+            <li>
+              <strong>共益費・管理費※変動分</strong> 2名入居時の共益費は￥9000
+            </li>
+            <li>
+              <strong>設備等</strong>
+              2F。床材は洋室（合板フローリング）。陽当たりA。窓の向きは北、西。2階者限定のルーフテラスあり。無線LANあり。備品：エアコン、机、椅子。
+            </li>
+            <li>
+              <strong>入居条件</strong> 男性、女性、外国人対応OK
+            </li>
+            <li>
+              <strong>敷金・保証金</strong> ￥0
+            </li>
+            <li>
+              <strong>礼金</strong> ￥37,000
+            </li>
+            <li>
+              <strong>仲介手数料・鍵交換費用</strong> ￥0
+            </li>
+            <li>
+              <strong>保険</strong>
+              三井住友海上火災保険への加入任意（￥1300／月）。
+            </li>
+          </ul>
+
+          <div className="w-full rounded-xl border p-5 shadow dark:border-2">
+            <strong>賃貸借契約の種類</strong> 建物賃貸借契約
+            <br />
+            <strong>賃貸借契約の期間</strong> 3ヵ月～
+            <br />
+            <strong>家賃保証会社</strong>
+            その方の状況次第。家賃保証会社加入の場合（賃料共益費込みの50%）。
+            <br />
+            <strong>最終更新日</strong> 2025-04-03
+            <br />
+            <strong>最大入居人数</strong> 2名
+          </div>
+        </div>
       )
     },
   },
