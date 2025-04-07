@@ -1,6 +1,7 @@
 'use client'
 import { IconArrowNarrowRight } from '@tabler/icons-react'
 import { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { useState, useRef, useId, useEffect } from 'react'
 
 interface SlideData {
@@ -91,7 +92,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                 : 'none',
           }}
         >
-          <img
+          <Image
             className="absolute inset-0 h-[120%] w-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
             style={{
               opacity: current === index ? 1 : 0.5,
