@@ -19,20 +19,22 @@ import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+  username: z.string().min(1, {
+    message: 'Username must be at least 1 characters.',
   }),
-  emailAddress: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+  emailAddress: z.string().email({
+    message: 'Please enter a valid email address.',
   }),
-  contactContent: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+  contactContent: z.string().min(10, {
+    message: 'Username must be at least 10 characters.',
   }),
 })
 
-const onSubmit = (values: z.infer<typeof FormSchema>) => {}
+const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  toast('sss')
+}
 
-const Contact = () => {
+const ContactForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -40,17 +42,6 @@ const Contact = () => {
     },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-  }
-  // ...
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -110,4 +101,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default ContactForm
