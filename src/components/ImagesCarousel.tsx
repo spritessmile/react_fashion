@@ -13,43 +13,27 @@ import outsideImg8 from '@/assets/images/outsideOfHouse/img-8.jpg'
 const ImagesCarousel = () => {
   const slideData = [
     {
-      title: 'Mystic Mountains',
-      button: 'Explore Component',
       src: outsideImg1,
     },
     {
-      title: 'Urban Dreams',
-      button: 'Explore Component',
       src: outsideImg2,
     },
     {
-      title: 'Neon Nights',
-      button: 'Explore Component',
       src: outsideImg3,
     },
     {
-      title: 'Desert Whispers',
-      button: 'Explore Component',
       src: outsideImg4,
     },
     {
-      title: 'Mystic Mountains',
-      button: 'Explore Component',
       src: outsideImg5,
     },
     {
-      title: 'Urban Dreams',
-      button: 'Explore Component',
       src: outsideImg6,
     },
     {
-      title: 'Neon Nights',
-      button: 'Explore Component',
       src: outsideImg7,
     },
     {
-      title: 'Desert Whispers',
-      button: 'Explore Component',
       src: outsideImg8,
     },
   ]
