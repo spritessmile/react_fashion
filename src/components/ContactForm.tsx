@@ -30,8 +30,14 @@ const FormSchema = z.object({
   }),
 })
 
-const onSubmit = (values: z.infer<typeof FormSchema>) => {
-  toast('sss')
+const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const res = await fetch('/api/resend/sendEmail', {
+    method: 'POST', // Specify the request method
+    headers: {
+      'Content-Type': 'application/json', // Indicate the type of request
+    },
+    body: JSON.stringify(values),
+  })
 }
 
 const ContactForm = () => {
@@ -44,7 +50,10 @@ const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="mx-auto w-fit space-y-6 md:w-xl"
+      >
         <FormField
           control={form.control}
           name="username"
@@ -86,7 +95,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>お問い合わせ</FormLabel>
               <FormControl>
-                <Textarea className="resize-none" {...field} />
+                <Textarea className="h-28" {...field} />
               </FormControl>
               <FormDescription>
                 連絡、または契約について気になることを気軽にお問い合わせください。
@@ -95,7 +104,7 @@ const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">応募する</Button>
       </form>
     </Form>
   )

@@ -126,7 +126,7 @@ const RoomList = () => {
             onClick={() => setActive(card)}
             className="flex cursor-pointer flex-col items-center justify-between rounded-xl p-4 hover:bg-neutral-50 md:flex-row dark:hover:bg-neutral-800"
           >
-            <div className="flex flex-col gap-4 md:flex-row">
+            <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
               {/* <motion.div layoutId={`image-${card.title}-${id}`}>
                 <Image
                   width={100}
@@ -141,7 +141,8 @@ const RoomList = () => {
               ) : (
                 <div className="size-8 rounded-lg bg-green-400"></div>
               )}
-              <div className="">
+
+              <div>
                 <motion.h3
                   layoutId={`title-${card.title}-${id}`}
                   className="text-center font-medium text-neutral-800 md:text-left dark:text-neutral-200"
