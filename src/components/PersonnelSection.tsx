@@ -9,12 +9,12 @@ import insideImg4 from '@/assets/images/insideOfHouse/img-4.jpg'
 
 export function PersonnelSection() {
   return (
-    <div className="p-x-24 mx-auto mb-[964px] h-screen max-w-5xl md:mb-48 md:p-16">
+    <div className="p-x-24 mx-auto mb-[980px] h-screen max-w-5xl md:mb-48 md:p-16">
       <h1 className="mb-8 text-center text-3xl font-semibold">
         ハウス室内の写真
       </h1>
 
-      <div className="m-2 grid grid-cols-1 gap-2 gap-x-2 md:grid-cols-12">
+      <div className="m-5 grid grid-cols-1 gap-5 gap-x-2 md:grid-cols-12">
         <Image
           src={insideImg1}
           alt="ハウス室内の写真"
@@ -27,7 +27,7 @@ export function PersonnelSection() {
         />
       </div>
 
-      <div className="m-2 grid grid-cols-1 gap-2 gap-x-2 md:grid-cols-12">
+      <div className="m-5 grid grid-cols-1 gap-5 gap-x-2 md:grid-cols-12">
         <Image
           src={insideImg3}
           alt="ハウス室内の写真"
