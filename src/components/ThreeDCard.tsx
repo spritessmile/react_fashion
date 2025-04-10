@@ -18,7 +18,7 @@ interface ThreeDCardProps {
 const ThreeDCard = (card: ThreeDCardProps) => {
   return (
     <CardContainer className="inter-var">
-      <CardBody className="group/card relative rounded-xl border border-black/[0.1] bg-gray-50 p-5 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]">
+      <CardBody className="group/card relative flex h-64 min-w-sm flex-col items-center justify-center space-y-4 rounded-xl border border-black/[0.1] bg-gray-50 px-10 sm:w-80 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]">
         <CardItem translateZ="100">{card.icon}</CardItem>
 
         <CardItem translateZ="50">

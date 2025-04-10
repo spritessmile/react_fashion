@@ -10,7 +10,7 @@ import ThreeDCard from '@/components/ThreeDCard'
 
 const Requirements = () => {
   return (
-    <div className="flex flex-wrap items-center justify-around gap-4">
+    <div className="grid grid-cols-1 gap-10 p-20 md:grid-cols-2 lg:grid-cols-3">
       <ThreeDCard
         icon={<ChartNoAxesGantt size={64} />}
         title="管理スタイル"
