@@ -9,7 +9,7 @@ import insideImg4 from '@/assets/images/insideOfHouse/img-4.jpg'
 
 export function PersonnelSection() {
   return (
-    <div className="p-x-24 mx-auto mb-[964px] h-screen max-w-5xl md:mb-48">
+    <div className="p-x-24 mx-auto mb-[964px] h-screen max-w-5xl md:mb-48 md:p-16">
       <h1 className="mb-8 text-center text-3xl font-semibold">
         ハウス室内の写真
       </h1>
