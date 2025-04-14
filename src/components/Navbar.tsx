@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 const Navbar = () => {
   return (
-    <nav className="fixed inset-x-0 top-3 z-50 mx-auto max-w-xl">
+    <nav className="fixed inset-x-0 top-2 z-50 mx-auto max-w-xl">
       <BlurredCard>
         <div className="flex w-full items-center justify-around">
           <ul className="flex items-center justify-start space-x-4 font-semibold">
