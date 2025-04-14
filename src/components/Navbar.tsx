@@ -5,27 +5,31 @@ import BlurredCard from '@/components/BlurredCard'
 import ThemeToggle from '@/components/theme/ThemeToggle'
 import { cn } from '@/lib/utils'
 
-const Navbar = ({ className }: { className?: string }) => {
+const Navbar = () => {
   return (
-    <nav
-      className={cn(
-        'fixed inset-x-0 top-10 z-50 mx-auto w-full max-w-2xl',
-        className,
-      )}
-    >
+    <nav className="fixed inset-x-0 top-3 z-50 mx-auto max-w-xl">
       <BlurredCard>
-        <h1 className="mr-48 text-xl font-semibold">Share Terrace</h1>
-        <ul className="mr-2 flex items-center justify-around space-x-2">
-          <li>lorem</li>
-          <li>lorem</li>
-          <li>lorem</li>
-        </ul>
+        <div className="flex w-full items-center justify-around">
+          <ul className="flex items-center justify-start space-x-4 font-semibold">
+            <li onClick={() => scrollTo({ top: 1800, behavior: 'smooth' })}>
+              室内写真
+            </li>
+            <li onClick={() => scrollTo({ top: 2700, behavior: 'smooth' })}>
+              ルーム情報
+            </li>
+            <li onClick={() => scrollTo({ top: 3200, behavior: 'smooth' })}>
+              周辺環境
+            </li>
+            <li onClick={() => scrollTo({ top: 3900, behavior: 'smooth' })}>
+              マップで見る
+            </li>
+          </ul>
 
-        <ThemeToggle />
-        <ThemeToggle />
-        {/* <Button variant={'outline'} onClick={}>
+          <ThemeToggle />
+          {/* <Button variant={'outline'} onClick={}>
           lang
         </Button> */}
+        </div>
       </BlurredCard>
     </nav>
   )
