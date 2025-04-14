@@ -39,7 +39,8 @@ const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     body: JSON.stringify(values),
   })
 
-  console.log(res.json())
+  if (res.ok) toast('メッセージが届いました')
+  else toast('メッセージが届いていません、時間を置いてもう一度試してください')
 }
 
 const ContactForm = () => {
