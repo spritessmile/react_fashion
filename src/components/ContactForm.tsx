@@ -38,6 +38,8 @@ const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     },
     body: JSON.stringify(values),
   })
+
+  console.log(res.json())
 }
 
 const ContactForm = () => {
@@ -45,6 +47,8 @@ const ContactForm = () => {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: '',
+      emailAddress: '',
+      contactContent: '',
     },
   })
 
@@ -63,9 +67,7 @@ const ContactForm = () => {
               <FormControl>
                 <Input {...field} />
               </FormControl>
-              <FormDescription>
-                連絡時の名前を教えて頂いております
-              </FormDescription>
+              <FormDescription>お名前を教えてください</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -81,7 +83,7 @@ const ContactForm = () => {
                 <Input {...field} />
               </FormControl>
               <FormDescription>
-                担当者はこのメールアドレスでご連絡させていただきます
+                メールアドレス宛にご連絡いたします
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -98,7 +100,7 @@ const ContactForm = () => {
                 <Textarea className="h-28" {...field} />
               </FormControl>
               <FormDescription>
-                連絡、または契約について気になることを気軽にお問い合わせください。
+                気になることがありましたらご気軽にお問い合わせください。
               </FormDescription>
               <FormMessage />
             </FormItem>
