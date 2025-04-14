@@ -53,62 +53,68 @@ const ContactForm = () => {
   })
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto w-fit space-y-6 md:w-xl"
-      >
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>お名前</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormDescription>お名前を教えてください</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <div>
+      <h2 className="mb-10 text-center text-3xl font-semibold">
+        お問い合わせフォーム
+      </h2>
 
-        <FormField
-          control={form.control}
-          name="emailAddress"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>メールアドレス</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormDescription>
-                メールアドレス宛にご連絡いたします
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mx-auto w-fit space-y-6 md:w-xl"
+        >
+          <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>お名前</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormDescription>お名前を教えてください</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="contactContent"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>お問い合わせ</FormLabel>
-              <FormControl>
-                <Textarea className="h-28" {...field} />
-              </FormControl>
-              <FormDescription>
-                気になることがありましたらご気軽にお問い合わせください。
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">応募する</Button>
-      </form>
-    </Form>
+          <FormField
+            control={form.control}
+            name="emailAddress"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>メールアドレス</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormDescription>
+                  メールアドレス宛にご連絡いたします
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="contactContent"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>お問い合わせ</FormLabel>
+                <FormControl>
+                  <Textarea className="h-28" {...field} />
+                </FormControl>
+                <FormDescription>
+                  気になることがありましたらご気軽にお問い合わせください。
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">応募する</Button>
+        </form>
+      </Form>
+    </div>
   )
 }
 
