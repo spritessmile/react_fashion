@@ -2,7 +2,8 @@ import { Resend } from 'resend'
 import { EmailTemplate } from '@/components/EmailTemplate'
 import type { NextRequest, NextResponse } from 'next/server'
 
-const resend = new Resend('re_G8Uia7rS_9J4d8z7p7ZMCn1H8jsNwbxeE')
+// test api key
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface ResponseData {
   username: string
@@ -15,8 +16,8 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
 
   const { data, error } = await resend.emails.send({
     from: '星野民家シェアハウス <onboarding@resend.dev>',
-    to: ['gaomingzhao666@outlook.com'],
-    subject: '問い合わせ',
+    to: ['machizukuri.project@gmail.com'],
+    subject: '問い合わせメール',
     react: EmailTemplate({
       username: username,
       emailAddress: emailAddress,
@@ -24,13 +25,8 @@ export async function POST(req: NextRequest, res: NextResponse<ResponseData>) {
     }) as React.ReactElement,
   })
 
-  console.log({ username, emailAddress, contactContent })
-
-  res.json({ username: username, emailAddress, contactContent })
-
-  if (error) {
-    return Response.json({ error }, { status: 500 })
-  }
+  if (!error) Response.json({ data }, { status: 200 })
+  else return Response.json({ error }, { status: 500 })
 
   return Response.json(data)
 }
