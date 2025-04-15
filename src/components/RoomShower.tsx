@@ -1,6 +1,5 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react'
-import { LayoutGrid } from '@/components/ui/layout-grid'
+import React from 'react'
 import Image from 'next/image'
 import insideImg1 from '@/assets/images/insideOfHouse/room-101.jpg'
 import insideImg2 from '@/assets/images/insideOfHouse/room-102.jpg'

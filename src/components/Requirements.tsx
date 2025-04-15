@@ -7,7 +7,6 @@ import {
   History,
 } from 'lucide-react'
 import ThreeDCard from '@/components/ThreeDCard'
-import { div } from 'framer-motion/client'
 
 const Requirements = () => {
   return (

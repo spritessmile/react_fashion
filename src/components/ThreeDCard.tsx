@@ -1,13 +1,7 @@
 'use client'
 
-import Image, { StaticImageData } from 'next/image'
-import React, {
-  ForwardRefExoticComponent,
-  ReactNode,
-  RefAttributes,
-} from 'react'
+import React, { ReactNode } from 'react'
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
-import { LucideProps } from 'lucide-react'
 
 interface ThreeDCardProps {
   icon: ReactNode
